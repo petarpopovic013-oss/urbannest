@@ -56,7 +56,21 @@ export function ContactForm() {
       </label>
       <div className="flex flex-col items-start gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <button className="button button-light min-w-48" type="submit">
-          Pošaljite upit <span aria-hidden="true">↗</span>
+          Pošaljite upit{" "}
+          <svg
+            className="arrow-icon"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M5 15 15 5M7 5h8v8"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
         <p className="max-w-72 text-xs leading-5 text-white/40 sm:text-right" aria-live="polite">
           {message || "Klikom se otvara vaš email program sa pripremljenom porukom."}

@@ -21,7 +21,20 @@ export function Footer() {
             <div className="mt-12">
               <a className="button button-light !px-8 !py-4 !text-sm" href={contact.phoneHref}>
                 Zakažite konsultacije
-                <span aria-hidden="true" className="ml-2">↗</span>
+                <svg
+                  className="arrow-icon ml-1"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 15 15 5M7 5h8v8"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </a>
             </div>
           </div>
@@ -85,7 +98,23 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Urban Nest.</p>
           <div className="flex gap-8">
             <p>Beograd, Srbija</p>
-            <Link href="/" className="hover:text-white transition-colors">Početna ↑</Link>
+            <Link href="/" className="hover:text-white transition-colors inline-flex items-center gap-1.5 group">
+              Početna
+              <svg
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 16V4m-5 5 5-5 5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,6 +5,25 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { contact, navigation } from "@/lib/site-content";
 
+function ArrowUpRight({ className = "arrow-icon" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M5 15 15 5M7 5h8v8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function MenuIcon({ open }: { open: boolean }) {
   return (
     <svg
@@ -63,7 +82,7 @@ export function Header() {
 
   return (
     <header 
-      className={`site-header ${scrolled ? "scrolled" : ""}`}
+      className={`site-header ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-active" : ""}`}
     >
       <div className="header-inner">
         <Link
@@ -72,7 +91,11 @@ export function Header() {
           aria-label="Urban Nest, početna"
           onClick={closeMenu}
         >
-          <Logo className="header-logo" priority />
+          <Logo
+            variant={menuOpen ? "light" : "dark"}
+            className="header-logo"
+            priority
+          />
         </Link>
 
         <nav className="header-nav" aria-label="Glavna navigacija">
@@ -85,12 +108,12 @@ export function Header() {
 
         <a className="button button-dark header-call" href={contact.phoneHref}>
           Pozovite nas
-          <span aria-hidden="true">↗</span>
+          <ArrowUpRight />
         </a>
 
         <button
           type="button"
-          className="header-menu-button"
+          className={`header-menu-button ${menuOpen ? "is-open" : ""}`}
           aria-label={menuOpen ? "Zatvori meni" : "Otvori meni"}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
@@ -105,29 +128,64 @@ export function Header() {
           id="mobile-navigation"
           className="mobile-menu"
         >
-          <nav aria-label="Mobilna navigacija">
-            {navigation.map((item, index) => (
-              <Link 
-                key={item.href} 
-                href={item.href} 
-                onClick={closeMenu}
-              >
-                <span>0{index + 1}</span>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="mobile-contact">
-            <p>Razgovarajmo o vašem apartmanu.</p>
-            <a className="button button-light" href={contact.phoneHref}>
-              Pozovite nas
-              <span aria-hidden="true">↗</span>
-            </a>
+          <div className="mobile-menu-inner">
+            <nav className="mobile-nav" aria-label="Mobilna navigacija">
+              <p className="mobile-nav-kicker">Navigacija</p>
+              {navigation.map((item, index) => (
+                <Link 
+                  key={item.href} 
+                  href={item.href} 
+                  onClick={closeMenu}
+                  className="mobile-nav-link"
+                >
+                  <div className="mobile-nav-left">
+                    <span className="mobile-nav-num">0{index + 1}</span>
+                    <span className="mobile-nav-label">{item.label}</span>
+                  </div>
+                  <svg
+                    className="mobile-nav-arrow"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M7.5 4.5l5 5.5-5 5.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
+              ))}
+            </nav>
+
+            <div className="mobile-contact-card">
+              <div className="mobile-contact-header">
+                <span className="mobile-contact-badge">Direktan kontakt</span>
+                <p className="mobile-contact-title">Razgovarajmo o vašem apartmanu</p>
+              </div>
+
+              <a className="button button-light mobile-call-action" href={contact.phoneHref}>
+                <span>Pozovite nas</span>
+                <ArrowUpRight />
+              </a>
+
+              <div className="mobile-contact-meta">
+                <a href={contact.phoneHref} className="mobile-phone-link">
+                  {contact.displayPhone}
+                </a>
+                <span className="mobile-meta-divider">•</span>
+                <a href={`mailto:${contact.email}`} className="mobile-email-link">
+                  {contact.email}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .site-header {
           position: sticky;
           z-index: 50;
@@ -162,7 +220,7 @@ export function Header() {
           align-items: center;
         }
 
-        :global(.header-logo) {
+        .header-logo {
           width: 158px;
           max-height: 72px;
         }
@@ -217,7 +275,7 @@ export function Header() {
         }
 
         @media (max-width: 920px) {
-          :global(.header-logo) {
+          .header-logo {
             width: 142px;
           }
 
@@ -237,10 +295,15 @@ export function Header() {
 
         @media (max-width: 759px) {
           .site-header, .site-header.scrolled {
-            height: 96px;
+            height: 84px;
             background: var(--paper) !important;
             border-bottom: 1px solid rgba(39, 43, 48, 0.09) !important;
             backdrop-filter: none !important;
+          }
+
+          .site-header.menu-active {
+            background: var(--ink-deep) !important;
+            border-bottom: 1px solid rgba(255, 254, 250, 0.1) !important;
           }
 
           .header-inner {
@@ -248,9 +311,9 @@ export function Header() {
             justify-content: space-between;
           }
 
-          :global(.header-logo) {
+          .header-logo {
             width: 126px;
-            max-height: 58px;
+            max-height: 54px;
           }
 
           .header-nav,
@@ -260,79 +323,200 @@ export function Header() {
 
           .header-menu-button {
             display: grid;
-            width: 48px;
-            height: 48px;
-            border: 1px solid rgba(39, 43, 48, 0.17);
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(39, 43, 48, 0.18);
             border-radius: 50%;
             background: transparent;
             color: var(--ink);
             cursor: pointer;
             place-items: center;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+          }
+
+          .header-menu-button.is-open {
+            border-color: rgba(255, 254, 250, 0.22);
+            background: rgba(255, 254, 250, 0.08);
+            color: var(--white);
           }
 
           .mobile-menu {
             position: fixed;
-            z-index: 1;
-            top: 96px;
+            z-index: 49;
+            top: 84px;
             right: 0;
             bottom: 0;
             left: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            background:
+              radial-gradient(circle at 100% 0%, rgba(211, 192, 164, 0.12), transparent 45%),
+              var(--ink-deep);
+            color: var(--white);
+            animation: mobile-fade-in 0.25s ease-out;
+          }
+
+          @keyframes mobile-fade-in {
+            from {
+              opacity: 0;
+              transform: translateY(-6px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .mobile-menu-inner {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 62px var(--gutter) 40px;
-            background: var(--ink-deep);
-            color: var(--white);
+            min-height: calc(100dvh - 84px);
+            padding: 24px var(--gutter) max(28px, env(safe-area-inset-bottom, 28px));
+            gap: 28px;
           }
 
-          .mobile-menu nav {
-            display: grid;
+          .mobile-nav-kicker {
+            margin: 0 0 12px 4px;
+            color: var(--sand);
+            font-size: 10px;
+            font-weight: 750;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
           }
 
-          .mobile-menu nav a {
+          .mobile-nav {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 8px;
+            border-bottom: 1px solid rgba(255, 254, 250, 0.08);
+            border-radius: 8px;
+            transition: background-color 0.2s, padding-left 0.2s;
+          }
+
+          .mobile-nav-link:active {
+            background: rgba(255, 254, 250, 0.06);
+            padding-left: 14px;
+          }
+
+          .mobile-nav-left {
             display: flex;
             align-items: baseline;
-            gap: 19px;
-            border-bottom: 1px solid var(--line-dark);
-            padding-block: 22px;
-            font-family: var(--font-serif), Georgia, serif;
-            font-size: clamp(38px, 11vw, 56px);
-            line-height: 1;
+            gap: 16px;
           }
 
-          .mobile-menu nav a span {
+          .mobile-nav-num {
             color: var(--sand);
             font-family: var(--font-sans), Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 750;
             letter-spacing: 0.12em;
           }
 
-          .mobile-contact {
+          .mobile-nav-label {
+            color: var(--white);
+            font-family: var(--font-serif), Georgia, serif;
+            font-size: clamp(22px, 5.8vw, 28px);
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+          }
+
+          .mobile-nav-arrow {
+            width: 16px;
+            height: 16px;
+            color: rgba(255, 254, 250, 0.35);
+            transition: transform 0.2s, color 0.2s;
+          }
+
+          .mobile-nav-link:active .mobile-nav-arrow {
+            transform: translateX(3px);
+            color: var(--sand-light);
+          }
+
+          .mobile-contact-card {
+            background: rgba(255, 254, 250, 0.04);
+            border: 1px solid rgba(255, 254, 250, 0.1);
+            border-radius: 18px;
+            padding: 22px 20px;
             display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 24px;
-          }
-
-          .mobile-contact p {
-            max-width: 180px;
-            margin: 0;
-            color: rgba(255, 254, 250, 0.58);
-            font-size: 13px;
-          }
-        }
-
-        @media (max-width: 440px) {
-          .mobile-contact {
-            align-items: stretch;
             flex-direction: column;
+            gap: 16px;
+          }
+
+          .mobile-contact-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+          }
+
+          .mobile-contact-badge {
+            color: var(--sand);
+            font-size: 9px;
+            font-weight: 750;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+          }
+
+          .mobile-contact-title {
+            margin: 0;
+            color: rgba(255, 254, 250, 0.9);
+            font-family: var(--font-serif), Georgia, serif;
+            font-size: 18px;
+            line-height: 1.25;
+            text-align: center;
+          }
+
+          .mobile-call-action {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding-block: 15px;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+          }
+
+          .mobile-contact-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            padding-top: 4px;
+            font-size: 12px;
+          }
+
+          .mobile-phone-link {
+            color: rgba(255, 254, 250, 0.75);
+            font-weight: 600;
+          }
+
+          .mobile-meta-divider {
+            color: rgba(255, 254, 250, 0.25);
+          }
+
+          .mobile-email-link {
+            color: rgba(255, 254, 250, 0.6);
+            transition: color 0.2s;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .header-nav a::after {
             transition: none;
+          }
+          .mobile-menu {
+            animation: none;
           }
         }
       `}</style>

@@ -145,7 +145,20 @@ export function PropertyQuiz() {
                     disabled={!currentAnswer}
                   >
                     {step === questions.length - 1 ? "Završite procenu" : "Sledeće pitanje"}
-                    <span aria-hidden="true">→</span>
+                    <svg
+                      className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 10h12m-5-5 5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </button>
                 </div>
               </>
