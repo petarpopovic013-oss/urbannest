@@ -11,7 +11,7 @@ import { Transparency } from "@/components/Transparency";
 
 export default function Home() {
   return (
-    <div className="site-shell">
+    <div id="top" className="site-shell">
       <Header />
       <main>
         <HeroSection />

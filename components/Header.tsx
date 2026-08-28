@@ -67,7 +67,7 @@ export function Header() {
     >
       <div className="header-inner">
         <Link
-          href="/"
+          href="/#top"
           className="header-logo-link"
           aria-label="Urban Nest, početna"
           onClick={closeMenu}

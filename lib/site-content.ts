@@ -6,11 +6,10 @@ import type {
 } from "@/types/content";
 
 export const navigation: NavigationItem[] = [
-  { label: "Početna", href: "/" },
+  { label: "Početna", href: "/#top" },
   { label: "Kako radimo", href: "/#kako-radimo" },
   { label: "Usluge", href: "/#usluge" },
   { label: "Za vlasnike", href: "/#za-vlasnike" },
-  { label: "Česta pitanja", href: "/#faq" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
