@@ -7,16 +7,15 @@ import type {
 
 export const navigation: NavigationItem[] = [
   { label: "Početna", href: "/#top" },
-  { label: "Kako radimo", href: "/#kako-radimo" },
   { label: "Usluge", href: "/#usluge" },
-  { label: "Za vlasnike", href: "/#za-vlasnike" },
+  { label: "Kako radimo", href: "/#kako-radimo" },
+  { label: "Čišćenje", href: "/#ciscenje" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
 export const contact: ContactConfig = {
-  contactName: "Branislav Stevanović",
-  displayPhone: "+381 61 51 21 3",
-  phoneHref: "tel:+3816151213",
+  displayPhone: "+381 61 51 41 21 3",
+  phoneHref: "tel:+381615141213",
   email: "office@urban-nest.rs",
 };
 
@@ -49,7 +48,7 @@ export const ownerOutcomes: OutcomeItem[] = [
 
 export const services: ServiceItem[] = [
   {
-    title: "Oglas koji prodaje boravak",
+    title: "Oglas i prezentacija",
     description:
       "Postavljamo i unapređujemo prezentaciju apartmana, od fotografija i opisa do pravila i pogodnosti.",
   },
@@ -64,8 +63,8 @@ export const services: ServiceItem[] = [
       "Vodimo upite, potvrde, dolazak, podršku tokom boravka i uredan odlazak gostiju.",
   },
   {
-    title: "Čišćenje i kontrola",
+    title: "Operativa i pregled",
     description:
-      "Organizujemo smenu gostiju, proveravamo apartman i pripremamo ga za sledeću rezervaciju.",
+      "Koordiniramo smenu gostiju, čišćenje i kontrolu, uz jasan pregled rezervacija i važnih napomena.",
   },
 ];

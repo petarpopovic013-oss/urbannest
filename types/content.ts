@@ -15,7 +15,6 @@ export type ServiceItem = {
 };
 
 export type ContactConfig = {
-  contactName: string;
   displayPhone: string;
   phoneHref: string;
   email: string;

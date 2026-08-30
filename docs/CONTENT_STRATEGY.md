@@ -21,4 +21,4 @@ Urban Nest nije predstavljen kao servis za pojedinačno čišćenje ili predaju 
 
 ## Konverzija
 
-Primarna radnja je telefonski poziv. Kontakt je centralizovan u `lib/site-content.ts` i trenutno koristi test podatke dok klijent ne potvrdi finalni broj i e-mail.
+Primarna radnja je telefonski poziv. Potvrđeni kontakt podaci centralizovani su u `lib/site-content.ts`.

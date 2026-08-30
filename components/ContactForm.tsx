@@ -2,6 +2,7 @@
 
 import { type FormEvent, useState } from "react";
 
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { contact } from "@/lib/site-content";
 
 export function ContactForm() {
@@ -14,12 +15,12 @@ export function ContactForm() {
     const phone = String(data.get("phone") ?? "").trim();
     const property = String(data.get("property") ?? "").trim();
     const details = String(data.get("details") ?? "").trim();
-    const subject = encodeURIComponent(`Upit sa sajta — ${name}`);
+    const subject = encodeURIComponent(`Upit sa sajta: ${name}`);
     const body = encodeURIComponent(
       [
         `Ime i prezime: ${name}`,
         `Telefon: ${phone}`,
-        `Nekretnina: ${property || "Nije navedeno"}`,
+        `Prostor / nekretnina: ${property || "Nije navedeno"}`,
         "",
         details,
       ].join("\n"),
@@ -47,30 +48,17 @@ export function ContactForm() {
         </label>
       </div>
       <label className={labelClass}>
-        Nekretnina
-        <input className={inputClass} name="property" placeholder="Lokacija i tip apartmana" />
+        Prostor / nekretnina
+        <input className={inputClass} name="property" placeholder="Lokacija i tip prostora" />
       </label>
       <label className={labelClass}>
         Kako možemo da pomognemo?
-        <textarea className={`${inputClass} min-h-44 resize-y leading-7`} name="details" placeholder="Napišite nekoliko reči o apartmanu i vašim potrebama" required />
+        <textarea className={`${inputClass} min-h-44 resize-y leading-7`} name="details" placeholder="Napišite nekoliko reči o prostoru i vašim potrebama" required />
       </label>
       <div className="flex flex-col items-start gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <button className="button button-light min-w-48" type="submit">
           Pošaljite upit{" "}
-          <svg
-            className="arrow-icon"
-            viewBox="0 0 20 20"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M5 15 15 5M7 5h8v8"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <ArrowIcon />
         </button>
         <p className="max-w-72 text-xs leading-5 text-white/40 sm:text-right" aria-live="polite">
           {message || "Klikom se otvara vaš email program sa pripremljenom porukom."}

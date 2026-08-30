@@ -1,196 +1,356 @@
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { ParallaxImage } from "@/components/ParallaxImage";
 import { Reveal } from "@/components/Reveal";
 import { contact } from "@/lib/site-content";
 
-function ArrowIcon() {
-  return (
-    <svg
-      className="arrow-icon"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
 export function HeroSection() {
   return (
-    <section id="pocetna" className="hero section-light">
-      <div className="hero-intro container">
-        <Reveal>
-          <p className="eyebrow hero-eyebrow">
-            Kompletno upravljanje kratkoročnim najmom u Beogradu
-          </p>
-        </Reveal>
+    <section id="pocetna" className="hero-image" aria-labelledby="hero-title">
+      <div className="hero-image__media" aria-hidden="true">
+        <ParallaxImage
+          src="/images/apartment-building.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          parallaxOffset={90}
+        />
+      </div>
+      <div className="hero-image__overlay" aria-hidden="true" />
+      <div className="hero-image__texture" aria-hidden="true" />
 
-        <Reveal delay={80}>
-          <h1 className="display-title hero-title">
-            Vaš apartman radi više.
-            <br />
-            Vi radite manje.
-          </h1>
-        </Reveal>
+      <div className="container hero-image__content">
+        <div className="hero-image__main">
+          <Reveal direction="none">
+            <p className="eyebrow hero-image__eyebrow">
+              <span className="hero-image__desktop-text">
+                Kompletno upravljanje kratkoročnim najmom u Beogradu
+              </span>
+              <span className="hero-image__mobile-text">
+                Upravljanje apartmanima · Beograd
+              </span>
+            </p>
+          </Reveal>
 
-        <Reveal delay={150}>
-          <p className="body-copy hero-copy">
-            Urban Nest vodi oglas, cene, goste, check-in, čišćenje, kontrolu i
-            izveštaje, dok vi zadržavate pregled bez svakodnevne operative.
-          </p>
+          <Reveal delay={70}>
+            <h1 className="display-title hero-image__title" id="hero-title">
+              <span>Vaš apartman radi više.</span>
+              <span>Vi radite manje.</span>
+            </h1>
+          </Reveal>
 
-          <div className="hero-actions">
-            <a className="button button-dark" href={contact.phoneHref}>
-              Pozovite Urban Nest
-              <ArrowIcon />
-            </a>
-            <a className="text-link" href="#kako-radimo">
-              Pogledajte kako radimo
-              <ArrowIcon />
-            </a>
-          </div>
+          <Reveal delay={140} className="hero-image__lower">
+            <p className="hero-image__copy">
+              <span className="hero-image__desktop-text">
+                Urban Nest preuzima kompletno upravljanje vašim apartmanom za
+                kratkoročno izdavanje. To obuhvata oglas, cene, komunikaciju sa
+                gostima i svakodnevnu operativu.
+              </span>
+              <span className="hero-image__mobile-text">
+                Preuzimamo kompletno vođenje apartmana: oglas, cene,
+                komunikaciju sa gostima i svakodnevnu operativu.
+              </span>
+            </p>
+
+            <div className="hero-image__actions">
+              <a className="button button-light" href={contact.phoneHref}>
+                <span className="hero-image__desktop-text">
+                  Pozovite Urban Nest
+                </span>
+                <span className="hero-image__mobile-text">
+                  Zakažite konsultacije
+                </span>
+                <ArrowIcon />
+              </a>
+              <a className="text-link hero-image__link" href="#usluge">
+                <span className="hero-image__desktop-text">
+                  Pogledajte šta preuzimamo
+                </span>
+                <span className="hero-image__mobile-text">Šta preuzimamo</span>
+                <ArrowIcon />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={210} direction="none" className="hero-image__aside">
+          <span>Urban Nest</span>
+          <p>Oglas · Cene · Gosti · Operativa</p>
         </Reveal>
       </div>
 
-      <Reveal delay={220} className="hero-image-reveal">
-        <div className="hero-image image-frame">
-          <ParallaxImage
-            src="/images/apartment-building.jpg"
-            alt="Savremena stambena zgrada okružena zelenilom"
-            fill
-            priority
-            sizes="100vw"
-            parallaxOffset={120}
-          />
-          <div className="hero-image-shade" aria-hidden="true" />
-        </div>
-      </Reveal>
-
       <style>{`
-        .hero {
-          position: relative;
-          overflow: hidden;
-          padding-top: clamp(88px, 10vw, 156px);
-        }
-
-        .hero::before,
-        .hero::after {
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(39, 43, 48, 0.022);
-          content: "";
-          pointer-events: none;
-        }
-
-        .hero::before {
-          top: -18vw;
-          left: 8%;
-          width: 34vw;
-          height: 34vw;
-        }
-
-        .hero::after {
-          top: 40px;
-          right: -9vw;
-          width: 31vw;
-          height: 31vw;
-        }
-
-        .hero-intro {
-          position: relative;
-          z-index: 1;
-          display: flex;
-          max-width: 1160px;
-          align-items: center;
-          flex-direction: column;
-          padding-bottom: clamp(76px, 9vw, 132px);
-          text-align: center;
-        }
-
-        .hero-eyebrow {
-          justify-content: center;
-          margin-bottom: clamp(24px, 3vw, 42px);
-          color: rgba(39, 43, 48, 0.68);
-        }
-
-        .hero-title {
-          max-width: 1100px;
-          font-size: clamp(62px, 8vw, 116px);
-          line-height: 1;
-        }
-
-        .hero-copy {
-          max-width: 720px;
-          margin: clamp(32px, 4vw, 50px) auto 0;
-        }
-
-        .hero-actions {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 28px;
-          margin-top: 35px;
-        }
-
-        .hero-image-reveal {
-          position: relative;
-          z-index: 2;
-        }
-
         .hero-image {
-          height: clamp(560px, 46vw, 700px);
-          background: var(--sage);
+          position: relative;
+          min-height: clamp(680px, 100svh, 880px);
+          overflow: hidden;
+          background: var(--ink-deep);
+          color: var(--white);
+          isolation: isolate;
         }
 
-        .hero-image-shade {
+        .hero-image__media,
+        .hero-image__overlay,
+        .hero-image__texture {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, transparent 58%, rgba(20, 23, 24, 0.13));
+        }
+
+        .hero-image__media {
+          z-index: -3;
+        }
+
+        .hero-image__media img {
+          object-fit: cover;
+          object-position: center 48%;
+        }
+
+        .hero-image__overlay {
+          z-index: -2;
+          background:
+            linear-gradient(90deg, rgba(16, 19, 20, 0.88) 0%, rgba(16, 19, 20, 0.68) 42%, rgba(16, 19, 20, 0.2) 76%, rgba(16, 19, 20, 0.18) 100%),
+            linear-gradient(180deg, rgba(16, 19, 20, 0.2) 0%, rgba(16, 19, 20, 0.08) 42%, rgba(16, 19, 20, 0.72) 100%);
+        }
+
+        .hero-image__texture {
+          z-index: -1;
+          opacity: 0.2;
+          background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+          background-size: 100% 25%;
           pointer-events: none;
+        }
+
+        .hero-image__content {
+          display: grid;
+          min-height: inherit;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: center;
+          gap: 48px;
+          padding-block: clamp(74px, 8vw, 118px);
+        }
+
+        .hero-image__main {
+          max-width: 1100px;
+        }
+
+        .hero-image__mobile-text {
+          display: none;
+        }
+
+        .hero-image__eyebrow {
+          margin-bottom: clamp(24px, 3vw, 38px);
+          color: var(--sand-light);
+        }
+
+        .hero-image__title {
+          color: var(--white);
+          font-size: clamp(58px, 6.8vw, 98px);
+          line-height: 0.96;
+          text-shadow: 0 4px 36px rgba(0, 0, 0, 0.18);
+        }
+
+        .hero-image__title span {
+          display: block;
+        }
+
+        .hero-image__lower {
+          display: flex;
+          max-width: 920px;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: clamp(34px, 6vw, 82px);
+          margin-top: clamp(30px, 4vw, 50px);
+          padding-top: 28px;
+          border-top: 1px solid rgba(255, 254, 250, 0.28);
+        }
+
+        .hero-image__copy {
+          max-width: 560px;
+          margin: 0;
+          color: rgba(255, 254, 250, 0.78);
+          font-size: clamp(15px, 1.2vw, 18px);
+          line-height: 1.72;
+        }
+
+        .hero-image__actions {
+          display: flex;
+          flex: 0 0 auto;
+          align-items: center;
+          gap: 24px;
+        }
+
+        .hero-image__link {
+          color: var(--white);
+          white-space: nowrap;
+        }
+
+        .hero-image__aside {
+          display: grid;
+          align-self: center;
+          gap: 9px;
+          padding-left: 26px;
+          border-left: 1px solid rgba(255, 254, 250, 0.3);
+          color: rgba(255, 254, 250, 0.62);
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+        }
+
+        .hero-image__aside span,
+        .hero-image__aside p {
+          margin: 0;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+        }
+
+        .hero-image__aside span {
+          color: var(--sand-light);
+        }
+
+        @media (min-width: 1100px) {
+          .hero-image__title span {
+            white-space: nowrap;
+          }
+        }
+
+        @media (max-width: 980px) {
+          .hero-image__content {
+            grid-template-columns: 1fr;
+          }
+
+          .hero-image__aside {
+            display: none;
+          }
+
+          .hero-image__lower {
+            align-items: flex-start;
+            flex-direction: column;
+          }
         }
 
         @media (max-width: 759px) {
-          .hero {
-            padding-top: 74px;
+          .hero-image {
+            min-height: max(620px, 100svh);
           }
 
-          .hero-intro {
-            padding-bottom: 68px;
+          .hero-image__media img {
+            object-position: 60% center;
           }
 
-          .hero-eyebrow {
-            max-width: 290px;
-            font-size: 9px;
+          .hero-image__overlay {
+            background:
+              linear-gradient(90deg, rgba(16, 19, 20, 0.48), rgba(16, 19, 20, 0.24)),
+              linear-gradient(180deg, rgba(16, 19, 20, 0.2) 0%, rgba(16, 19, 20, 0.42) 42%, rgba(16, 19, 20, 0.86) 100%);
           }
 
-          .hero-title {
-            font-size: clamp(52px, 17vw, 75px);
-            line-height: 1.02;
+          .hero-image__texture {
+            display: none;
           }
 
-          .hero-copy {
-            max-width: 520px;
-            margin-top: 29px;
-            font-size: 15px;
-            line-height: 1.68;
+          .hero-image__content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-block: 104px 48px;
           }
 
-          .hero-actions {
+          .hero-image__main {
+            display: flex;
+            width: 100%;
+            max-width: 380px;
             align-items: center;
             flex-direction: column;
-            gap: 19px;
-            margin-top: 29px;
+            text-align: center;
           }
 
-          .hero-image {
-            height: 430px;
+          .hero-image__desktop-text {
+            display: none;
           }
 
-          .hero-image img {
-            object-position: 58% center;
+          .hero-image__mobile-text {
+            display: inline;
+          }
+
+          .hero-image__eyebrow {
+            gap: 9px;
+            margin-bottom: 24px;
+            padding: 0;
+            color: rgba(255, 254, 250, 0.7);
+            font-size: 10.5px;
+            letter-spacing: 0.16em;
+            white-space: nowrap;
+          }
+
+          .hero-image__eyebrow::before {
+            display: block;
+            width: 18px;
+          }
+
+          .hero-image__title {
+            max-width: none;
+            font-size: clamp(30px, 9.3vw, 41px);
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+          }
+
+          .hero-image__title span {
+            white-space: nowrap;
+          }
+
+          .hero-image__lower {
+            display: flex;
+            max-width: 32rem;
+            align-items: center;
+            margin-top: 27px;
+            padding-top: 0;
+            border-top: 0;
+          }
+
+          .hero-image__copy {
+            max-width: 34ch;
+            font-size: 15px;
+            line-height: 1.62;
+          }
+
+          .hero-image__actions {
+            display: flex;
+            width: auto;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+          }
+
+          .hero-image__actions .button {
+            width: auto;
+            min-height: 50px;
+            padding-inline: 25px;
+            font-size: 12px;
+            letter-spacing: 0.055em;
+          }
+
+          .hero-image__link {
+            display: none;
           }
         }
 
+        @media (max-width: 759px) and (max-height: 700px) {
+          .hero-image__content {
+            padding-block: 92px 32px;
+          }
+
+          .hero-image__eyebrow {
+            margin-bottom: 14px;
+          }
+
+          .hero-image__lower {
+            margin-top: 17px;
+          }
+
+          .hero-image__actions {
+            margin-top: 20px;
+          }
+        }
       `}</style>
     </section>
   );

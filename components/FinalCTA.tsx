@@ -1,21 +1,8 @@
 import Image from "next/image";
 
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { Reveal } from "@/components/Reveal";
 import { contact } from "@/lib/site-content";
-
-function ArrowUpRight() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="arrow-icon"
-      aria-hidden="true"
-    >
-      <path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
 
 export function FinalCTA() {
   return (
@@ -64,7 +51,7 @@ export function FinalCTA() {
                 aria-label={`Pozovite Urban Nest na ${contact.displayPhone}`}
               >
                 Pozovite Urban Nest
-                <ArrowUpRight />
+                <ArrowIcon />
               </a>
               <a
                 href={contact.phoneHref}

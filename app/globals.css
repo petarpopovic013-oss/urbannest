@@ -70,7 +70,7 @@ img {
 
 .section {
   position: relative;
-  padding-block: clamp(92px, 10vw, 160px);
+  padding-block: clamp(76px, 8vw, 128px);
 }
 
 .section-dark {
@@ -120,8 +120,8 @@ img {
 }
 
 .section-title {
-  font-size: clamp(46px, 5.2vw, 78px);
-  line-height: 1.07;
+  font-size: clamp(42px, 4.7vw, 70px);
+  line-height: 1.04;
 }
 
 .card-title {
@@ -255,7 +255,7 @@ a:hover .arrow-icon {
   }
 
   .section {
-    padding-block: 82px;
+    padding-block: 70px;
   }
 
   .display-title {

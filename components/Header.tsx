@@ -2,27 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { Logo } from "@/components/Logo";
 import { contact, navigation } from "@/lib/site-content";
-
-function ArrowUpRight({ className = "arrow-icon" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 15 15 5M7 5h8v8"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -50,14 +33,18 @@ function MenuIcon({ open }: { open: boolean }) {
 }
 
 export function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
+  const isOverlay = isHome && !scrolled && !menuOpen;
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,7 +69,7 @@ export function Header() {
 
   return (
     <header 
-      className={`site-header ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-active" : ""}`}
+      className={`site-header ${isHome ? "site-header--home" : ""} ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-active" : ""}`}
     >
       <div className="header-inner">
         <Link
@@ -92,7 +79,7 @@ export function Header() {
           onClick={closeMenu}
         >
           <Logo
-            variant={menuOpen ? "light" : "dark"}
+            variant={menuOpen || isOverlay ? "light" : "dark"}
             className="header-logo"
             priority
           />
@@ -106,9 +93,12 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="button button-dark header-call" href={contact.phoneHref}>
+        <a
+          className={`button ${isOverlay ? "button-light" : "button-dark"} header-call`}
+          href={contact.phoneHref}
+        >
           Pozovite nas
-          <ArrowUpRight />
+          <ArrowIcon />
         </a>
 
         <button
@@ -142,20 +132,7 @@ export function Header() {
                     <span className="mobile-nav-num">0{index + 1}</span>
                     <span className="mobile-nav-label">{item.label}</span>
                   </div>
-                  <svg
-                    className="mobile-nav-arrow"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M7.5 4.5l5 5.5-5 5.5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowIcon className="mobile-nav-arrow" direction="right" />
                 </Link>
               ))}
             </nav>
@@ -168,7 +145,7 @@ export function Header() {
 
               <a className="button button-light mobile-call-action" href={contact.phoneHref}>
                 <span>Pozovite nas</span>
-                <ArrowUpRight />
+                <ArrowIcon />
               </a>
 
               <div className="mobile-contact-meta">
@@ -200,6 +177,13 @@ export function Header() {
           background: rgba(241, 240, 235, 0.94);
           border-bottom: 1px solid rgba(39, 43, 48, 0.09);
           backdrop-filter: blur(18px);
+          box-shadow: 0 12px 34px rgba(25, 27, 29, 0.06);
+        }
+
+        .site-header--home {
+          position: fixed;
+          right: 0;
+          left: 0;
         }
 
         .header-inner {
@@ -263,6 +247,18 @@ export function Header() {
           transform-origin: left;
         }
 
+        .site-header--home:not(.scrolled):not(.menu-active) .header-nav a {
+          color: rgba(255, 254, 250, 0.8);
+        }
+
+        .site-header--home:not(.scrolled):not(.menu-active) .header-nav a:hover {
+          color: var(--white);
+        }
+
+        .site-header--home:not(.scrolled):not(.menu-active) .header-nav a::after {
+          background: var(--white);
+        }
+
         .header-call {
           justify-self: end;
           min-height: 50px;
@@ -306,6 +302,11 @@ export function Header() {
             border-bottom: 1px solid rgba(255, 254, 250, 0.1) !important;
           }
 
+          .site-header--home:not(.scrolled):not(.menu-active) {
+            background: transparent !important;
+            border-bottom-color: rgba(255, 254, 250, 0.12) !important;
+          }
+
           .header-inner {
             display: flex;
             justify-content: space-between;
@@ -337,6 +338,12 @@ export function Header() {
           .header-menu-button.is-open {
             border-color: rgba(255, 254, 250, 0.22);
             background: rgba(255, 254, 250, 0.08);
+            color: var(--white);
+          }
+
+          .site-header--home:not(.scrolled):not(.menu-active) .header-menu-button {
+            border-color: rgba(255, 254, 250, 0.32);
+            background: rgba(25, 27, 29, 0.12);
             color: var(--white);
           }
 

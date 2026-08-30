@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { Logo } from "@/components/Logo";
 import { contact, navigation } from "@/lib/site-content";
 
@@ -10,7 +11,7 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-16 lg:gap-24 mb-24">
           
           {/* Brand & Slogan */}
-          <div className="max-w-xl">
+          <div className="flex w-full max-w-xl flex-col items-center text-center sm:w-auto sm:items-start sm:text-left">
             <Link href="/" aria-label="Urban Nest početna" className="inline-block mb-10 transition-opacity hover:opacity-80">
               <Logo variant="light" className="!w-24 sm:!w-28 !h-auto" />
             </Link>
@@ -21,20 +22,7 @@ export function Footer() {
             <div className="mt-12">
               <a className="button button-light !px-8 !py-4 !text-sm" href={contact.phoneHref}>
                 Zakažite konsultacije
-                <svg
-                  className="arrow-icon ml-1"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 15 15 5M7 5h8v8"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <ArrowIcon className="arrow-icon ml-1" />
               </a>
             </div>
           </div>
@@ -67,12 +55,6 @@ export function Footer() {
               </h3>
               <div className="flex flex-col gap-8">
                 <div>
-                  <p className="text-white/40 text-[10px] font-bold mb-3 uppercase tracking-[0.15em]">Kontakt osoba</p>
-                  <p className="font-serif text-2xl text-white/90 leading-none tracking-tight">
-                    {contact.contactName}
-                  </p>
-                </div>
-                <div>
                   <p className="text-white/40 text-[10px] font-bold mb-3 uppercase tracking-[0.15em]">Telefon</p>
                   <a href={contact.phoneHref} className="font-serif text-3xl sm:text-4xl text-white hover:text-[var(--sand-light)] transition-colors leading-none tracking-tight">
                     {contact.displayPhone}
@@ -83,9 +65,7 @@ export function Footer() {
                   <p className="text-white/40 text-[10px] font-bold mb-3 uppercase tracking-[0.15em]">Email</p>
                   <a href={`mailto:${contact.email}`} className="text-base text-white/80 hover:text-white transition-colors flex items-center gap-2 group w-fit">
                     {contact.email}
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" viewBox="0 0 20 20" fill="none">
-                      <path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
+                    <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </a>
                 </div>
               </div>
@@ -100,20 +80,7 @@ export function Footer() {
             <p>Beograd, Srbija</p>
             <Link href="/" className="hover:text-white transition-colors inline-flex items-center gap-1.5 group">
               Početna
-              <svg
-                className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5"
-                viewBox="0 0 20 20"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 16V4m-5 5 5-5 5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowIcon className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" direction="up" />
             </Link>
           </div>
         </div>

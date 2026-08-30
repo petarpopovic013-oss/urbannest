@@ -9,7 +9,7 @@ import { contact } from "@/lib/site-content";
 export const metadata: Metadata = {
   title: "Kontakt | Urban Nest",
   description:
-    "Kontaktirajte Urban Nest za profesionalno upravljanje apartmanom u Beogradu.",
+    "Kontaktirajte Urban Nest za upravljanje apartmanom ili profesionalno čišćenje prostora u Beogradu.",
 };
 
 export default function ContactPage() {
@@ -21,9 +21,12 @@ export default function ContactPage() {
           <div className="container grid items-end gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
             <div className="relative z-10">
               <p className="eyebrow">Kontakt</p>
-              <h1 className="display-title max-w-[9ch]">Razgovor je dobar početak.</h1>
+              <h1 className="display-title text-[clamp(39px,12vw,84px)] leading-none">
+                <span className="block whitespace-nowrap">Razgovor je</span>
+                <span className="block whitespace-nowrap">dobar početak.</span>
+              </h1>
               <p className="body-copy mt-8 max-w-[52ch]">
-                Recite nam gde se vaš apartman nalazi i šta želite da postignete.
+                Recite nam gde se vaš prostor nalazi i šta vam je potrebno.
                 Dobićete konkretan odgovor, bez komplikovanja i opštih obećanja.
               </p>
             </div>
@@ -38,7 +41,7 @@ export default function ContactPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
               <p className="absolute bottom-7 left-7 right-7 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 sm:bottom-10 sm:left-10">
-                Beograd · Upravljanje kratkoročnim najmom
+                Beograd · Upravljanje i profesionalno čišćenje
               </p>
             </div>
           </div>
@@ -48,15 +51,14 @@ export default function ContactPage() {
           <div className="container grid items-start gap-16 lg:grid-cols-[minmax(280px,0.72fr)_minmax(0,1.28fr)] lg:gap-[clamp(64px,8vw,120px)]">
             <div className="lg:sticky lg:top-40">
               <p className="eyebrow">Direktan kontakt</p>
-              <h2 className="section-title max-w-[8ch]">Tu smo za vaše pitanje.</h2>
+              <h2 className="section-title text-[clamp(36px,11vw,70px)]">
+                <span className="block whitespace-nowrap">Tu smo za vaše</span>
+                <span className="block whitespace-nowrap">pitanje.</span>
+              </h2>
               <p className="body-copy mt-7 max-w-[39ch]">
-                Vi poznajete svoj apartman. Mi poznajemo svakodnevicu kratkoročnog izdavanja. Hajde da spojimo te dve perspektive.
+                Bilo da vam je potrebno upravljanje apartmanom ili profesionalno čišćenje, nekoliko detalja je dovoljno za konkretan odgovor.
               </p>
               <div className="mt-12 grid border-t border-[var(--line-light)]">
-                <div className="border-b border-[var(--line-light)] py-7">
-                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-black/45">Kontakt osoba</p>
-                  <p className="font-serif text-3xl">{contact.contactName}</p>
-                </div>
                 <div className="border-b border-[var(--line-light)] py-7">
                   <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-black/45">Telefon</p>
                   <a className="font-serif text-3xl transition-opacity hover:opacity-60" href={contact.phoneHref}>{contact.displayPhone}</a>
@@ -70,7 +72,10 @@ export default function ContactPage() {
 
             <div className="relative bg-[var(--ink-deep)] p-[clamp(30px,5.5vw,76px)] text-[var(--white)] shadow-[0_30px_100px_rgba(25,27,29,0.14)]">
               <p className="eyebrow relative text-[var(--sand)]">Pošaljite upit</p>
-              <h2 className="section-title relative mb-8 max-w-[11ch] text-[clamp(38px,4vw,62px)]">Nekoliko detalja je dovoljno.</h2>
+              <h2 className="section-title relative mb-8 text-[clamp(33px,10vw,62px)]">
+                <span className="block whitespace-nowrap">Nekoliko detalja</span>
+                <span className="block whitespace-nowrap">je dovoljno.</span>
+              </h2>
               <div className="mb-12 h-px w-full bg-white/15" aria-hidden="true" />
               <ContactForm />
             </div>

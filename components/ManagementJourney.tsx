@@ -16,46 +16,28 @@ const journeySteps = [
   },
   {
     number: "02",
-    label: "Prezentacija",
-    title: "Pripremamo oglas koji jasno predstavlja prostor",
+    label: "Oglas, cena i kalendar",
+    title: "Postavljamo prezentaciju i ritam rezervacija",
     description:
-      "Uređujemo redosled fotografija, opis, sadržaje i pravila boravka kako bi gost odmah razumeo šta apartman nudi.",
+      "Uređujemo oglas, fotografije i pravila boravka, a cenu i dostupnost prilagođavamo periodu i potražnji u Beogradu.",
     image: "/images/apartment-living.jpg",
     alt: "Uređen dnevni boravak spreman za predstavljanje gostima",
   },
   {
     number: "03",
-    label: "Cena i kalendar",
-    title: "Postavljamo ritam rezervacija",
+    label: "Rezervacija i boravak",
+    title: "Vodimo gosta od prvog upita do odlaska",
     description:
-      "Cena, minimalni boravak i dostupnost prilagođavaju se periodu, danima u nedelji i događajima u Beogradu.",
-    image: "/images/apartment-city.jpg",
-    alt: "Gradski apartman sa savremenim enterijerom",
-  },
-  {
-    number: "04",
-    label: "Gost i dolazak",
-    title: "Vodimo komunikaciju od upita do check-ina",
-    description:
-      "Gost dobija odgovore, potvrdu rezervacije i jasne instrukcije za dolazak. Tokom boravka zna kome može da se obrati.",
+      "Odgovaramo na poruke, potvrđujemo rezervaciju, šaljemo jasne instrukcije za dolazak i ostajemo dostupni tokom boravka.",
     image: "/images/apartment-minimal.jpg",
     alt: "Svetao enterijer apartmana pripremljen za dolazak gosta",
   },
   {
-    number: "05",
-    label: "Smena gostiju",
-    title: "Organizujemo čišćenje i proveru prostora",
+    number: "04",
+    label: "Prostor i pregled",
+    title: "Pripremamo apartman, a vas držimo informisanim",
     description:
-      "Nakon odlaska gosta koordiniramo čišćenje, posteljinu i kontrolu apartmana, a zatim ga pripremamo za sledeći dolazak.",
-    image: "/images/apartment-bedroom.jpg",
-    alt: "Uredno pripremljena spavaća soba",
-  },
-  {
-    number: "06",
-    label: "Pregled za vlasnika",
-    title: "Vi ostajete informisani bez dnevne operative",
-    description:
-      "Dobijate pregled rezervacija, obavljenih zadataka i važnih napomena, dok Urban Nest vodi svakodnevni tok izdavanja.",
+      "Koordiniramo čišćenje i proveru nakon gosta, pripremamo prostor za sledeći dolazak i dajemo vam jasan pregled važnih aktivnosti.",
     image: "/images/apartment-kitchen.jpg",
     alt: "Uredna kuhinja savremenog apartmana",
   },
@@ -87,7 +69,7 @@ export function ManagementJourney() {
 
   return (
     <section
-      id="usluge"
+      id="kako-radimo"
       className="journey section section-light"
       aria-labelledby="journey-title"
     >
@@ -96,7 +78,8 @@ export function ManagementJourney() {
           <div>
             <p className="eyebrow">Kako izgleda saradnja</p>
             <h2 className="section-title" id="journey-title">
-              Od prvog razgovora do jasnog mesečnog pregleda.
+              <span>Od prvog razgovora do</span>
+              <span>jasnog mesečnog pregleda.</span>
             </h2>
           </div>
           <p className="body-copy">
@@ -147,7 +130,7 @@ export function ManagementJourney() {
                     src={step.image}
                     alt={step.alt}
                     fill
-                    sizes="100vw"
+                    sizes="(max-width: 900px) calc(100vw - 40px), 1px"
                   />
                 </div>
                 <span className="journey-number">{step.number}</span>
@@ -172,13 +155,21 @@ export function ManagementJourney() {
 
         .journey-intro {
           display: grid;
-          grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.65fr);
+          grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
           align-items: end;
           gap: clamp(50px, 9vw, 150px);
         }
 
         .journey-intro .eyebrow {
           color: #81725d;
+        }
+
+        .journey-intro .section-title {
+          font-size: clamp(42px, 4.4vw, 66px);
+        }
+
+        .journey-intro .section-title span {
+          display: block;
         }
 
         .journey-intro .body-copy {
@@ -191,7 +182,7 @@ export function ManagementJourney() {
           grid-template-columns: minmax(380px, 0.9fr) minmax(460px, 1.1fr);
           align-items: start;
           gap: clamp(60px, 8vw, 132px);
-          margin-top: clamp(82px, 9vw, 130px);
+          margin-top: clamp(60px, 7vw, 94px);
         }
 
         .journey-visual-column {
@@ -262,12 +253,12 @@ export function ManagementJourney() {
         .journey-step {
           display: grid;
           width: 100%;
-          min-height: 270px;
+          min-height: 220px;
           grid-template-columns: 42px 1fr;
           gap: 25px;
           border: 0;
           border-bottom: 1px solid var(--line-light);
-          padding: 38px 16px 42px 0;
+          padding: 32px 16px 34px 0;
           background: transparent;
           color: inherit;
           text-align: left;
@@ -355,6 +346,12 @@ export function ManagementJourney() {
 
           .journey-step h3 {
             font-size: clamp(30px, 8.5vw, 42px);
+          }
+        }
+
+        @media (min-width: 1000px) {
+          .journey-intro .section-title span {
+            white-space: nowrap;
           }
         }
 

@@ -44,8 +44,8 @@
 - Fokus komunikacije je na vremenu vlasnika, kompletnoj operativi, lokalnom upravljanju i transparentnosti.
 - Uklonjeni su izmišljeni KPI-jevi, lažne recenzije, javni procenti i obećanja garantovanog profita.
 - Uklonjene su duge crtice iz sadržaja sajta.
-- Privremeni kontakt podaci centralizovani su u `lib/site-content.ts`:
-  - `+381 61 51 21 3`
+- Kontakt podaci centralizovani su u `lib/site-content.ts`:
+  - `+381 61 51 41 21 3`
   - `office@urban-nest.rs`
 
 ## Tehnička provera

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowIcon } from "@/components/ArrowIcon";
 import { Reveal } from "@/components/Reveal";
 import { Logo } from "@/components/Logo";
 import { contact } from "@/lib/site-content";
@@ -28,14 +29,6 @@ const questions = [
     options: ["Uglavnom za goste", "Povremeno i za sebe", "Nisam još odlučio"],
   },
 ] as const;
-
-function ArrowIcon() {
-  return (
-    <svg className="arrow-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.4" />
-    </svg>
-  );
-}
 
 export function PropertyQuiz() {
   const [step, setStep] = useState(0);
@@ -73,7 +66,8 @@ export function PropertyQuiz() {
         <Reveal className="quiz-intro">
           <p className="eyebrow">Kratka procena</p>
           <h2 className="section-title" id="quiz-title">
-            Da li vam je potrebno organizovano upravljanje?
+            <span>Da li vam je potrebno</span>
+            <span>organizovano upravljanje?</span>
           </h2>
           <p className="body-copy">
             Odgovorite na četiri kratka pitanja. Ne računamo zaradu unapred i
@@ -145,20 +139,10 @@ export function PropertyQuiz() {
                     disabled={!currentAnswer}
                   >
                     {step === questions.length - 1 ? "Završite procenu" : "Sledeće pitanje"}
-                    <svg
+                    <ArrowIcon
                       className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M4 10h12m-5-5 5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                      direction="right"
+                    />
                   </button>
                 </div>
               </>
@@ -223,6 +207,14 @@ export function PropertyQuiz() {
 
         .quiz-intro .eyebrow {
           color: var(--sand);
+        }
+
+        .quiz-intro .section-title {
+          font-size: clamp(42px, 4vw, 58px);
+        }
+
+        .quiz-intro .section-title span {
+          display: block;
         }
 
         .quiz-intro .body-copy {
@@ -443,6 +435,12 @@ export function PropertyQuiz() {
 
           .quiz-card-wrap {
             max-width: 760px;
+          }
+        }
+
+        @media (min-width: 1120px) {
+          .quiz-intro .section-title span {
+            white-space: nowrap;
           }
         }
 
